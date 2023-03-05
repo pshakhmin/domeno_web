@@ -1,0 +1,78 @@
+.select {
+	position: relative;
+}
+
+.select > input {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.select__dropdown {
+	position: absolute;
+	z-index: 1;
+	list-style: none;
+	margin: 0;
+	padding: 1px;
+	background: Field;
+	color: FieldText;
+	font-family: sans-serif;
+	font-size: small;
+	font: -moz-field;
+	border: 1px solid ThreeDShadow;
+	border-top: 0;
+	left: 0;
+	right: 0;
+	max-height: 10em;
+	overflow-y: auto;
+}
+.select__dropdown:empty {
+	display: none;
+}
+
+.select__dropdown [role="option"],
+.select__dropdown strong {
+	padding: 0.2em 0.4em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	cursor: default;
+}
+.select__dropdown [role="option"].select--selected,
+.select__dropdown [role="option"]:hover {
+	background: rgba(128,128,128,.2);
+	color: inherit;
+}
+.select__dropdown [role="option"].select--has-focus {
+	background: Highlight;
+	color: HighlightText;
+}
+.select__dropdown [role="option"][aria-disabled="true"] {
+	background: transparent;
+	color: GrayText;
+}
+.select__dropdown ul {
+	margin: 0;
+	padding: 0;
+}
+.select__dropdown ul [role="option"] {
+	padding-left: 2em;
+}
+
+.select__values {
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+.select__values li {
+	display: inline-block;
+	margin: 0.1em 0.2em;
+	margin-inline-start: 0;
+	cursor: default;
+}
+.select__value {
+	padding: 0 0.2em;
+	background: rgba(128,128,128,.2);
+	color: inherit;
+	border: 1px solid ThreeDShadow;
+	border-radius: 0.3em;
+}

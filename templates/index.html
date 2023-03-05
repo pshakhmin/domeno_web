@@ -1,0 +1,263 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Live Chat</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel=”stylesheet” href="{{ url_for('static', filename='styles/select.css') }}">
+    <script src="{{ url_for('static', filename='select.js')}} " type=”module”></script>
+    <script src="{{ url_for('static', filename='tags.js')}} " type=”module”></script>
+    <style>
+        body {
+            background-image: url("{{url_for('static', filename='bg.jpg')}}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="live-chat">
+
+    <header class="clearfix">
+        <a href="#" class="chat-close">x</a>
+        <h4>Чат-бот Domeno</h4>
+        <span class="chat-message-counter">1</span>
+    </header>
+
+    <div class="chat">
+        <div class="chat-history" id="chat-history">
+
+            <div class="chat-message clearfix">
+                <img src="{{ url_for('static', filename='botik.png') }}" alt="" width="50" height="50">
+                <div class="chat-message-content clearfix">
+                    <!--                    <span class="chat-time">13:35</span>-->
+                    <h5>Domeno</h5>
+                    <p>Проверьте домен на нарушение товарных знаков. Защитите себя от исков на сумму до 5 миллионов
+                        рублей</p>
+                </div> <!-- end chat-message-content -->
+            </div> <!-- end chat-message -->
+
+
+            <div class="chat-message clearfix">
+                <img src="{{ url_for('static', filename='botik.png') }}" alt="" width="50" height="50">
+                <div class="chat-message-content clearfix">
+                    <!--                    <span class="chat-time">13:35</span>-->
+                    <h5>Domeno</h5>
+                    <p>Для проверки введите домен до точки (без .ru, .com, .org).
+                        Пример: вместо cola.cola.ru, введите cola.cola </p>
+                </div> <!-- end chat-message-content -->
+            </div> <!-- end chat-message -->
+
+            <hr>
+
+        </div> <!-- end chat-history -->
+        <!--        <p class="chat-feedback">Отвечает..</p>-->
+        <form onsubmit="formSubmit(); return false">
+            <fieldset>
+                <input type="text" id='user-input' placeholder="Ваш ответ" autofocus>
+                <input type="hidden">
+            </fieldset>
+        </form>
+    </div> <!-- end chat -->
+</div> <!-- end live-chat -->
+<datalist id="datalist0">
+    <option value="1">Химические продукты</option>
+    <option value="2">Металлы и сплавы</option>
+    <option value="3">Машины и устройства</option>
+    <option value="4">Приборы и инструменты</option>
+    <option value="5">Продукты питания</option>
+    <option value="6">Напитки и табак</option>
+    <option value="7">Изделия и материалы</option>
+    <option value="8">Текстиль и одежда</option>
+    <option value="9">Товары для дома</option>
+    <option value="10">Услуги</option>
+</datalist>
+
+
+<datalist id="datalist1">
+    <option value="1">Химические продукты</option>
+    <option value="2">Краски, олифы, лаки</option>
+    <option value="3">Препараты для чистки, парфюмерия и косметика</option>
+    <option value="4">Технические масла, смазки, топлива</option>
+    <option value="5">Фармацевтические препараты</option>
+</datalist>
+
+<datalist id="datalist2">
+    <option value="6">Обычные металлы и сплавы</option>
+    <option value="14">Благородные металлы и их сплавы, изделия из них</option>
+</datalist>
+
+<datalist id="datalist3">
+    <option value="7">Машины, станки и двигатели</option>
+    <option value="9">Приборы, инструменты, оборудование</option>
+    <option value="11">Устройства для получения тепла</option>
+    <option value="12">Транспортные средства</option>
+</datalist>
+
+<datalist id="datalist4">
+    <option value="8">Ручные инструменты</option>
+    <option value="10">Медицинские приборы и инструменты</option>
+    <option value="13">Огнестрельное оружие и пиротехнические средства</option>
+    <option value="15">Музыкальные инструменты</option>
+</datalist>
+
+
+<datalist id="datalist5">
+    <option value="29">Продукты животного происхождения</option>
+    <option value="30">Растительные пищевые продукты</option>
+    <option value="31">Продукты земледелия и лесного хозяйства</option>
+</datalist>
+
+
+<datalist id="datalist6">
+    <option value="32">Безалкогольные напитки и пиво</option>
+    <option value="33">Алкогольные напитки (за исключением пива)</option>
+    <option value="34">Табак и курительные принадлежности</option>
+</datalist>
+
+<datalist id="datalist7">
+    <option value="16">Бумага и изделия из бумаги</option>
+    <option value="17">Резина, асбест, пластмассы</option>
+    <option value="18">Кожа и имитация кожи</option>
+    <option value="19">Неметаллические строительные материалы</option>
+</datalist>
+
+
+<datalist id="datalist8">
+    <option value="22">Верёвочно-канатные изделия</option>
+    <option value="23">Нити текстильные и пряжа</option>
+    <option value="24">Ткани, одеяла, покрывала и скатерти</option>
+    <option value="25">Одежда, обувь, головные уборы</option>
+    <option value="26">Галантерейные и басонные изделия</option>
+    <option value="27">Покрытия для полов</option>
+</datalist>
+
+<datalist id="datalist9">
+    <option value="20">Мебель и другие изделия</option>
+    <option value="21">Краски, олифы, лаки</option>
+    <option value="28">Игрушки и спортивные товары</option>
+</datalist>
+
+<datalist id="datalist10">
+    <option value="35">Помощь в управлении бизнесом</option>
+    <option value="36">Финансовые услуги</option>
+    <option value="37">Строительство и ремонт</option>
+    <option value="38">Телекоммуникации</option>
+    <option value="39">Перевозка людей и товаров</option>
+    <option value="40">Обработка материалов</option>
+    <option value="41">Услуги обучения и развлекательные мероприятия</option>
+    <option value="42">Научные и технические услуги</option>
+    <option value="43">Гостиницы, кейтеринг</option>
+    <option value="44">Медицинский и косметические услуги</option>
+    <option value="45">Юридические услуги и службы безопасности</option>
+</datalist>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script>
+
+    let userInput = document.getElementById("user-input");
+    let chat = document.getElementById("chat-history");
+    let uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2);
+
+    function addMessage(user, message) {
+        let buttonsDiv = document.getElementsByClassName('divButtons')
+        if (buttonsDiv.length === 1)
+            buttonsDiv[0].remove()
+        let di = document.createElement("div");
+        di.innerHTML = `
+                <div class="chat-message clearfix">
+                <img src="` + ((user === 'Chatbot') ? "{{ url_for('static', filename='botik.png') }}" : "{{ url_for('static', filename='uzver.png') }}") + `" alt="" width="50" height="50">
+                <div class="chat-message-content clearfix">
+                    <h5>` + ((user === 'Chatbot') ? 'Domeno' : 'Вы') + `</h5>
+                    <p>` + message + `</p>
+                </div>
+            </div>`
+        chat.appendChild(di);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addDirectChoice() {
+        let di = document.createElement("div");
+        di.setAttribute("class", "divButtons")
+        di.innerHTML = `<button class="button button4" onclick="inlineButtonClick('Да')">Да</button> <button class="button button4" onclick="inlineButtonClick('Нет')">Нет</button>`;
+        chat.appendChild(di);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    function checkMore() {
+        let di = document.createElement("div");
+        di.setAttribute("class", "divButtons")
+        di.innerHTML = `<button class="button button4" onclick="inlineButtonClick('Проверить другой домен')">Проверить другой домен</button>`;
+        chat.appendChild(di);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addCategoryChoice(datalist) {
+        userInput.setAttribute("list", datalist);
+        userInput.setAttribute("multiple", "");
+        userInput.setAttribute("placeholder", "Нажмите для выбора");
+    }
+
+    function inlineButtonClick(message) {
+        addMessage("You", message);
+        sendRequest(message);
+    }
+
+    function formSubmit() {
+        let message = userInput.value;
+        if (message.trim()) {
+            addMessage("You", message);
+            sendRequest(message);
+        }
+        userInput.value = "";
+        return false;
+    }
+
+    function sendRequest(message) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/chatbot");
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-9");
+        userInput.removeAttribute("list");
+        userInput.setAttribute("placeholder", "Ваш ответ");
+        xhr.onload = function () {
+            let response = JSON.parse(xhr.responseText);
+            let messages = response.message.split('|');
+            for (let i = 0; i < messages.length; i++)
+                addMessage("Chatbot", messages[i]);
+            if (response.step === 3 || response.step === 4)
+                addDirectChoice();
+            if (response.step === 5)
+                addCategoryChoice('datalist0');
+            if (response.step === 6)
+                addCategoryChoice('datalist' + response.category);
+            if (response.step === 7)
+                checkMore();
+        };
+        let data = JSON.stringify({"message": message, "uuid": uniqueId});
+        xhr.send(data);
+    }
+
+</script>
+<script>
+    (function () {
+
+        $('#live-chat header').on('click', function () {
+
+            $('.chat').slideToggle(300, 'swing');
+            $('.chat-message-counter').fadeToggle(300, 'swing');
+        });
+
+        $('.chat-close').on('click', function (e) {
+
+            e.preventDefault();
+            $('#live-chat').fadeOut(300);
+        });
+
+    })();
+</script>
+</body>
+</html>
