@@ -47,7 +47,7 @@
             <hr>
 
         </div> <!-- end chat-history -->
-        <!--        <p class="chat-feedback">Отвечает..</p>-->
+        <p class="chat-feedback">Обработка данных...</p>
         <form onsubmit="formSubmit(); return false">
             <fieldset>
                 <input type="text" id='user-input' placeholder="Ваш ответ" autofocus>
@@ -154,8 +154,11 @@
     let userInput = document.getElementById("user-input");
     let chat = document.getElementById("chat-history");
     let uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    let processing = document.getElementsByClassName("chat-feedback")[0];
+    processing.setAttribute("hidden", "");
 
     function addMessage(user, message) {
+        processing.setAttribute("hidden", "");
         let buttonsDiv = document.getElementsByClassName('divButtons')
         if (buttonsDiv.length === 1)
             buttonsDiv[0].remove()
@@ -211,6 +214,7 @@
 
     function sendRequest(message) {
         let xhr = new XMLHttpRequest();
+        processing.removeAttribute("hidden");
         xhr.open("POST", "/chatbot");
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-9");
         userInput.removeAttribute("list");

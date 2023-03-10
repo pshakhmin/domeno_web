@@ -65,7 +65,7 @@ def chatbot():
         users[user] = {'step': 2, 'domain': ''}
 
     if users[user]['step'] == 2:
-        users[user]['domain'] = message
+        users[user]['domain'] = ''.join(x for x in message if x.isalnum())
         users[user]['step'] = 3
         return jsonify({"message": "Вы используете сайт для продажи товаров (оказания услуг)?", 'step': 3})
 
@@ -75,8 +75,8 @@ def chatbot():
             return jsonify({
                 "message": "Некоммерческое использование товарного знака в домене является законным, "
                            "однако не исключает возможных претензий со стороны правообладателя. "
-                           "Консультация со специалистом поможет их избежать, обращайтесь к "
-                           "___*гиперссылка на юр. сервис*<br>Хотите продолжить проверку?",
+                           "Консультация "
+                           "<a href='https://www.hse.ru/ma/dlaw/'>специалистом</a> поможет их избежать.|Хотите продолжить проверку?",
                 "step": 4})
         if message.lower() == 'да':
             users[user]['step'] = 5
@@ -108,24 +108,28 @@ def chatbot():
 
     if users[user]['step'] == 6:
         parser_rpc = ParserRpcClient()
+        users[user]['step'] = 7
         response = json.loads(parser_rpc.call(json.dumps({"query": users[user]['domain'], "mktu": [message]})))
         print(response)
         if len(response) == 0:
             return jsonify({
                 "message": "Товарных знаков с таким словом нет. Обезопасьте себя от рисков (запрета использования "
                            "домена или обращения взысканий), зарегистрируйте свой товарный знак. Обратитесь за "
-                           "регистрацией к специалистам https://www.hse.ru/ma/dlaw/",
+                           "регистрацией к <a href='https://www.hse.ru/ma/dlaw/'> специалистам</a>.",
                 "step": 7})
         else:
             return jsonify({
                 "message": f"Использование домена может нарушать права правообладателя \"{response[0]['owner']}\"."
                            f"Словесное обозначение: {response[0]['words_part']}. Измените домен. "
-                           "|Воспользуйтесь сервисом подбора подходящего домена https://www.reg.ru/domain/new/"
-                           "|Остались вопросы? Проконсультируйтесь со специалистом https://www.hse.ru/ma/dlaw/",
+                           "|Воспользуйтесь  <a href = 'https://www.reg.ru/domain/new/'> сервисом подбора подходящего домена</a>"
+                           "|Остались вопросы? Проконсультируйтесь со <a href='https://www.hse.ru/ma/dlaw/'> специалистом</a>.",
                 "step": 7})
+
     if users[user]['step'] == 7:
-        if message.lower() == 'проверить еще':
+        if message.lower() == 'проверить другой домен':
+            print('FUCIKE SUCKIE')
             users[user]['step'] = 2
+            users[user]['domain'] = ''
             return jsonify({
                 "message": "Для проверки введите домен до точки (без .ru, .com, .org). Пример: вместо cola.cola.ru, "
                            "введите cola.cola",
